@@ -8,25 +8,38 @@ public class Solution {
 
     private static void checkMagazine(String[] magazine, String[] note) {
 
-        Hashtable<Integer, String> ht = new Hashtable<>(magazine.length);
-        String result = "Yes";
-        int i = 0, j = 0;
+        Hashtable<String, Integer> hashtable = new Hashtable<>();
 
-        for (String a : magazine) {
-            ht.put(i, a);
-            i++;
-        }
-        for (String b : note) {
-            if (!ht.containsValue(b)) {
-                result = "No";
-                break;
-            } else {
+        for (String mag: magazine) {
 
-                continue;
+            if(hashtable.containsKey(mag)){
+                hashtable.put(mag, hashtable.get(mag)+1);
+            }else {
+                hashtable.put(mag, 1);
+
             }
         }
-        System.out.println(result);
-        System.out.println(ht.toString());
+
+        //System.out.println(hashtable);
+
+        for (String nt: note) {
+            if(hashtable.get(nt) == null){
+                System.out.println("No");
+                return;
+            }else{
+                if(hashtable.get(nt) > 1){
+                    hashtable.replace(nt,hashtable.get(nt)-1);
+                }else {
+                    hashtable.remove(nt);
+                }
+            }
+        }
+
+        System.out.println("Yes");
+
+        return;
+
+
     }
 
 
