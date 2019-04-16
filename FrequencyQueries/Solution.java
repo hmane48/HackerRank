@@ -37,6 +37,8 @@ public class Solution {
         for (int i = 0; i < queries.size(); i++) {
             tmp = queries.get(i);
 
+            //System.out.println(Arrays.toString(tmp));
+
             switch (tmp[0]) {
 
                 case 1:
@@ -49,7 +51,7 @@ public class Solution {
                     break;
                 case 2:
                     if (ans.contains(tmp[1])) {
-                        ans.remove(tmp[1]);
+                        //ans.remove(tmp[1]);
                         map.replace(tmp[1], map.get(tmp[1]) - 1);
                     }
                     break;
