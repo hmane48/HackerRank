@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class OneAwayClass {
 
-    public static boolean oneAway(String a, String b) {
+    /*public static boolean oneAway(String a, String b) {
 
         int count = 0;
 
@@ -35,9 +35,47 @@ public class OneAwayClass {
 
         return count <= 1;
 
+    }*/
+
+    //Brute-force (insert, remove, replace)
+
+    public static boolean oneAway(String a, String b) {
+
+        int count = 0;
+
+        if (a.length() == b.length()) {
+            // it is a replace operation for sure
+            if (a.equals(b)) {
+                return true;
+            } else {
+                for (int i = 0; i < a.length(); i++) {
+                    if (count > 1) {
+                        return false;
+                    }
+                    if (a.charAt(i) != b.charAt(i)) {
+                        count++;
+                    }
+                }
+            }
+        } else if (Math.abs(a.length() - b.length()) > 1 ) {
+            // remove/insert operation
+            for (int i = 0; i < a.length(); i++) {
+                if (count > 2) {
+                    return false;
+                }
+                if (a.charAt(i) != b.charAt(i)) {
+                    count++;
+                }
+            }
+        } else {
+            return false;
+        }
+
+        return true;
+
     }
 
     public static void main(String[] args) {
-        System.out.println(oneAway("abccc","abcd"));
+        System.out.println(oneAway("cool", "cooo"));
     }
 }
