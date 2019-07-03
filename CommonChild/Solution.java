@@ -1,8 +1,8 @@
 package CommonChild;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
+
+/*Link for Solution: https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/*/
 
 public class Solution {
 
@@ -10,60 +10,63 @@ public class Solution {
 
     private static int commonChild(String s1, String s2) {
 
-        int count = 0;
+        int l1 = s1.length();
+        int l2 = s2.length();
 
-        char[] arrs1 = s1.toCharArray();
-        char[] arrs2 = s2.toCharArray();
+        return commonChild(s1, s2, l1, l2);
 
-        Map<Character, Integer> map1 = new HashMap<>();
-        Map<Character, Integer> map2 = new HashMap<>();
+    }
 
-        for (int i = 0; i < arrs1.length; i++) {
-            if (map1.containsKey(arrs1[i])) {
-                map1.replace(arrs1[i], map1.get(arrs1[i]) + 1);
-            } else {
-                map1.put(arrs1[i], 1);
-            }
+    /* This Optimal Solution with O(n^2)*/
 
-            if (map2.containsKey(arrs2[i])) {
-                map2.replace(arrs2[i], map2.get(arrs2[i]) + 1);
-            } else {
-                map2.put(arrs2[i], 1);
-            }
+    private static int commonChild(String s1, String s2, int l1, int l2) {
 
-        }
+        int L[][] = new int[l1 + 1][l2 + 1];
 
-        System.out.println(map1);
-        System.out.println(map2);
+        for (int i = 0; i <= l1; i++) {
+            for (int j = 0; j <= l2; j++) {
 
-        for (int i=0; i < arrs1.length; i++){
-            if(map1.containsKey(arrs2[i])){
-                if (map1.get(arrs2[i]) < map2.get(arrs2[i])){
-                    count += map1.get(arrs2[i]);
-                    map1.remove(arrs2[i]);
-                }else{
-                    count += map2.get(arrs2[i]);
-                    map2.remove(arrs2[i]);
+                if (i == 0 || j == 0) {
+                    L[i][j] = 0;
+                } else if (s1.charAt(i - 1) == s2.charAt(j - 1)) {
+
+                    L[i][j] = 1 + L[i - 1][j - 1];
+
+                } else {
+                    L[i][j] = Math.max(L[i - 1][j], L[i][j - 1]);
                 }
             }
         }
 
-        return count;
+        return L[l1][l2];
 
     }
 
+    /* This is expensive with O(2^n) */
+
+    /*private static int commonChild(String s1, String s2, int l1, int l2) {
+
+        if (l1 == 0 || l2 == 0) {
+            return 0;
+        }
+
+        if (s1.charAt(l1 - 1) == s2.charAt(l2 - 1)) {
+
+            return 1 + commonChild(s1, s2, l1-1, l2-1);
+
+        } else {
+
+            return Math.max(commonChild(s1, s2, l1, l2-1),
+                    commonChild(s1, s2, l1-1, l2));
+        }
+
+    }*/
+
     public static void main(String[] args) {
 
-        scanner = new Scanner(System.in);
-
-        String s1 = scanner.next();
-        String s2 = scanner.next();
-
-        int result = commonChild(s1, s2);
+        int result = commonChild("SHINCHAN", "NOHARAAA");
 
         System.out.println(result);
-
-        scanner.close();
 
     }
 }
