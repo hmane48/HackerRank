@@ -1,4 +1,4 @@
-package CommonChild;
+package SP_CommonChild;
 
 import java.util.Scanner;
 
