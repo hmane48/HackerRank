@@ -1,12 +1,8 @@
 package SP_CommonChild;
 
-import java.util.Scanner;
-
 /*Link for Solution: https://www.geeksforgeeks.org/longest-common-subsequence-dp-4/*/
 
 public class Solution {
-
-    private static Scanner scanner;
 
     private static int commonChild(String s1, String s2) {
 
@@ -21,7 +17,7 @@ public class Solution {
 
     private static int commonChild(String s1, String s2, int l1, int l2) {
 
-        int L[][] = new int[l1 + 1][l2 + 1];
+        int[][] L = new int[l1 + 1][l2 + 1];
 
         for (int i = 0; i <= l1; i++) {
             for (int j = 0; j <= l2; j++) {
