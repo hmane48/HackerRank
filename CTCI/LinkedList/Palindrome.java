@@ -10,41 +10,41 @@ import java.util.Stack;
 public class Palindrome {
 
     // if i know the size then it just require one loop giving O(n) time and space complexity.
-    private boolean isPalindrome(Node n, int size) {
+    private boolean isPalindrome(LinkedListNode n, int size) {
 
         if (size == 1 ){
             return true;
         }else if (size == 0){
             return false;
         }
-        Node node = n;
+        LinkedListNode linkedListNode = n;
         Stack<Integer> stack = new Stack<>();
         int index = 0;
         while (index != size/2) {
-            stack.push(node.value);
-            node = node.next;
+            stack.push(linkedListNode.value);
+            linkedListNode = linkedListNode.next;
             index++;
         }
         if (size % 2 == 1){
-            node = node.next;
+            linkedListNode = linkedListNode.next;
         }
-        while (node != null) {
-            if (stack.pop() != node.value) {
+        while (linkedListNode != null) {
+            if (stack.pop() != linkedListNode.value) {
                 return false;
             }
-            node = node.next;
+            linkedListNode = linkedListNode.next;
         }
         return true;
     }
 
     // reverse and compare
     // this has 3 methods
-    private boolean isPalindrome2(Node head) {
-        Node reversed = reversedListNode(head);
+    private boolean isPalindrome2(LinkedListNode head) {
+        LinkedListNode reversed = reversedListNode(head);
         return isEqual(reversed, head);
     }
 
-    private boolean isEqual(Node one, Node two) {
+    private boolean isEqual(LinkedListNode one, LinkedListNode two) {
         while (one != null && two != null) {
             if (one.value != two.value) {
                 return false;
@@ -55,13 +55,13 @@ public class Palindrome {
         return one == null && two == null;
     }
 
-    private Node reversedListNode(Node node) {
-        Node head = null;
-        while (node != null) {
-            Node n = new Node(node.value);
+    private LinkedListNode reversedListNode(LinkedListNode linkedListNode) {
+        LinkedListNode head = null;
+        while (linkedListNode != null) {
+            LinkedListNode n = new LinkedListNode(linkedListNode.value);
             n.next = head;
             head = n;
-            node = node.next;
+            linkedListNode = linkedListNode.next;
         }
 
         return head;

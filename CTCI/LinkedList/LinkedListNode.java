@@ -1,18 +1,18 @@
 package CTCI.LinkedList;
 
-public class Node {
+public class LinkedListNode {
 
-    Node next;
+    LinkedListNode next;
     int value;
 
-    public Node(int value) {
+    public LinkedListNode(int value) {
         this.value = value;
     }
 
-    public Node() {
+    public LinkedListNode() {
     }
 
-    public Node getNext() {
+    public LinkedListNode getNext() {
         return next;
     }
 
@@ -21,7 +21,7 @@ public class Node {
     }
 
 
-    public void setNext(Node next) {
+    public void setNext(LinkedListNode next) {
         this.next = next;
     }
 

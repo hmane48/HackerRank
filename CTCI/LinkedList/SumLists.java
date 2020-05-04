@@ -16,8 +16,8 @@ public class SumLists {
 
 
     // naive solution
-    public LinkedList SumList(Node a, Node b) {
-        LinkedList<Node> ans = new LinkedList<>();
+    public LinkedList SumList(LinkedListNode a, LinkedListNode b) {
+        LinkedList<LinkedListNode> ans = new LinkedList<>();
         int a1 = 1, b1 = 1;
         int aPart, bPart, carry = 0;
         while (a == null && b == null) {
@@ -39,14 +39,14 @@ public class SumLists {
 
             int sum = aPart + bPart + carry;
 
-            Node n = new Node(sum % 10);
+            LinkedListNode n = new LinkedListNode(sum % 10);
             carry = sum / 10;
             ans.add(n);
         }
 
         while (carry != 0) {
 
-            Node n = new Node(carry % 10);
+            LinkedListNode n = new LinkedListNode(carry % 10);
             carry = carry / 10;
             ans.add(n);
 
@@ -57,16 +57,16 @@ public class SumLists {
 
     // Recursive Solution -> returns Node
 
-    Node addList(Node a, Node b) {
+    LinkedListNode addList(LinkedListNode a, LinkedListNode b) {
         return addList(a, b, 0);
     }
 
-    private Node addList(Node a, Node b, int carry) {
+    private LinkedListNode addList(LinkedListNode a, LinkedListNode b, int carry) {
         if (a == null && b == null && carry == 0) {
             return null;
         }
 
-        Node ans = new Node();
+        LinkedListNode ans = new LinkedListNode();
         int value = carry;
         if (a != null) {
             value += a.value;
@@ -79,7 +79,7 @@ public class SumLists {
 
         // Recurse Logic
         if (a != null || b != null) {
-            Node more = addList(a == null ? null : a.next,
+            LinkedListNode more = addList(a == null ? null : a.next,
                                 b == null ? null : b.next,
                                 value >= 10 ? 1 : 0);
 

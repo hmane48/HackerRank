@@ -1,7 +1,5 @@
 package CTCI.LinkedList;
 
-import CTCI.LinkedList.Node;
-
 import java.util.LinkedList;
 
 // need to partition the LinkedList according to x order isn't important.
@@ -9,65 +7,65 @@ import java.util.LinkedList;
 // Expected: 3 -> 2 -> 1 ---> 5 -> 8 -> 5 -> 10
 public class Partition {
 
-    public void partitionX(LinkedList<Node> list, int x) {
+    public void partitionX(LinkedList<LinkedListNode> list, int x) {
 
-        Node head = list.getFirst();
+        LinkedListNode head = list.getFirst();
         if (head == null || head.next == null) {
             return;
         }
-        Node node;
-        Node pivot = null;
+        LinkedListNode linkedListNode;
+        LinkedListNode pivot = null;
         if (head.value < x) {
             pivot = head;
         }
-        node = head.next;
+        linkedListNode = head.next;
 
-        while (node != null) {
-            if (node.value < x) {
-                Node temp, pointer;
-                pointer = node.next;
+        while (linkedListNode != null) {
+            if (linkedListNode.value < x) {
+                LinkedListNode temp, pointer;
+                pointer = linkedListNode.next;
                 if (pivot == null) {
                     temp = head;
-                    head = node;
+                    head = linkedListNode;
                     head.next = temp;
                     pivot = head;
                 } else {
                     temp = pivot.next;
-                    pivot.next = node;
-                    node.next = temp;
-                    pivot = node;
+                    pivot.next = linkedListNode;
+                    linkedListNode.next = temp;
+                    pivot = linkedListNode;
                 }
-                node = pointer;
+                linkedListNode = pointer;
                 continue;
 
             } else {
-                Node temp, pointer;
-                pointer = node.next;
+                LinkedListNode temp, pointer;
+                pointer = linkedListNode.next;
                 if (pivot != null) {
                     temp = pivot.next;
-                    pivot.next = node;
-                    node.next = temp;
+                    pivot.next = linkedListNode;
+                    linkedListNode.next = temp;
                 }
-                node = pointer;
+                linkedListNode = pointer;
             }
         }
     }
 
     // Easy Approach to add to tail and head
 
-    public void partitionY(Node node, int x) {
-        LinkedList<Node> list = new LinkedList<>();
-        Node head = list.getFirst();
-        Node tail = list.getLast();
+    public void partitionY(LinkedListNode linkedListNode, int x) {
+        LinkedList<LinkedListNode> list = new LinkedList<>();
+        LinkedListNode head = list.getFirst();
+        LinkedListNode tail = list.getLast();
 
-        while (node != null) {
-            if (node.value < x) {
-                Node temp = head;
-                head = node;
+        while (linkedListNode != null) {
+            if (linkedListNode.value < x) {
+                LinkedListNode temp = head;
+                head = linkedListNode;
                 head.next = temp;
             }else {
-                Node temp = tail;
-                tail.next = node;
+                LinkedListNode temp = tail;
+                tail.next = linkedListNode;
 
             }
         }

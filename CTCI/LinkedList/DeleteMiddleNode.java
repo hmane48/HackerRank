@@ -4,10 +4,10 @@ import java.util.LinkedList;
 
 public class DeleteMiddleNode {
 
-    public LinkedList<Node> list;
+    public LinkedList<LinkedListNode> list;
 
-    public void deleteNode(Node n){
-        Node next;
+    public void deleteNode(LinkedListNode n){
+        LinkedListNode next;
         if (n.next != null && n != null){
 
             next = n.next;
