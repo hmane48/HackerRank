@@ -10,9 +10,13 @@ import java.util.Stack;
 
 public class SetOfStacks {
 
-    int capacity = 10;
+    int capacity;
 
     ArrayList<Stack<Integer>> stacks = new ArrayList<Stack<Integer>>();
+
+    public SetOfStacks(int capacity) {
+        this.capacity = capacity;
+    }
 
     public void push(int value) {
         // have to push it on last stack in stacks
@@ -46,13 +50,11 @@ public class SetOfStacks {
 
     private Stack<Integer> getLastStack() {
 
-        Stack<Integer> last = null;
-
-        for (Stack<Integer> stack : stacks) {
-            last = stack;
+        if (stacks.size() == 0){
+            return null;
+        }else {
+            return stacks.get(stacks.size()-1);
         }
-
-        return last;
     }
 
 
